@@ -1,26 +1,47 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Memory Monsters</title>
-        <!-- BOOTSTRAP-->
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
-        <link rel="stylesheet" href="static/css/style.css" media="screen" title="no title">
 
-        <!-- Fonts -->
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Didact+Gothic|Londrina+Outline|Mallanna|Michroma|Raleway+Dots|Questrial|Raleway|Delius|Itim|Istok+Web|Montserrat|Coming+Soon" rel="stylesheet">
-        <script src="static/js/angular.js"></script>
+<head>
+    <meta charset="utf-8">
+    <title>Memory Monsters</title>
+    <!-- BOOTSTRAP-->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/style.css" media="screen" title="no title">
 
-
-
-    </head>
-    <body>
-
-    </body>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Fonts -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Didact+Gothic|Londrina+Outline|Mallanna|Michroma|Raleway+Dots|Questrial|Raleway|Delius|Itim|Istok+Web|Montserrat|Coming+Soon" rel="stylesheet">
+    <script src="static/js/angular.js"></script>
     <script src="static/js/memorygame.js"></script>
+</head>
+
+<body>
+    <div class="container container1">
+        <div class="row row1" ng-app="memorygame" ng-controller="MainController">
+            <div class="btn-group btn-group modebtns">
+                <button ng-model="easy" ng-click="setEasy()" ng-class="{'active': easyActive}" class="btn btn-default" type="button" name="button">Easy</button>
+                <button ng-model="medium" ng-click="setMedium()" ng-class="{'active': mediumActive}" class="btn btn-default" type="button" name="button">Medium</button>
+                <button ng-model="hard" ng-click="setHard()" ng-class="{'active': hardActive}" class="btn btn-default" type="button" name="button">Hard</button>
+            </div>
+            <div class="cardgrid">
+                <table class="table table-responsive">
+                    <tr class="tablerow" ng-repeat="row in grid track by $index">
+                        <td class="cell" ng-repeat="card in row track by $index">
+                            <img class="card" ng-click="flipCard($parent.$index, $index);" ng-src="{{card.getImageUrl()}}" alt="" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div ng-show="youWon">
+                <p class="win">You Won!</p>
+                <button ng-click="newGame()" type="button" class="btn btn-success">Play Again</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </html>
