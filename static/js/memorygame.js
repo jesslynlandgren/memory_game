@@ -127,7 +127,7 @@ app.controller('MainController', function($scope, $timeout) {
             $scope.firstCard = $scope.grid[row][col];
             $scope.firstCard.open = true;
             $scope.state = 'second';
-        } else {
+        } else if ($scope.state==='second'){
             $scope.secondCard = $scope.grid[row][col];
             $scope.secondCard.open = true;
             if ($scope.firstCard.num === $scope.secondCard.num){
@@ -135,13 +135,15 @@ app.controller('MainController', function($scope, $timeout) {
                 $scope.secondCard.matched = true;
                 $scope.state = 'first';
             } else {
-                $scope.state = 'first';
-
+                $scope.state = 'showing-cards';
                 $timeout(function() {
                     $scope.firstCard.open = false;
                     $scope.secondCard.open = false;
+                    $scope.state = 'first';
                 }, 1000);
             }
+        } else if($scope.state==='showing-cards') {
+            //nothing
         }
         $scope.win = $scope.checkWin();
         if ($scope.win) {
