@@ -9,15 +9,20 @@ function Card(num) {
 }
 // method for getting card image
 Card.prototype.getImageUrl = function() {
-    if (this.open) {
-        if (this.num < 10) {
-            return 'static/img/monsters-0' + this.num + '.png';
-        } else {
-            return 'static/img/monsters-' + this.num + '.png';
-        }
+    if (this.num < 10) {
+        return 'static/img/monsters-0' + this.num + '.png';
     } else {
-        return 'static/img/logo-bw.png';
+        return 'static/img/monsters-' + this.num + '.png';
     }
+    // if (this.open) {
+    //     if (this.num < 10) {
+    //         return 'static/img/monsters-0' + this.num + '.png';
+    //     } else {
+    //         return 'static/img/monsters-' + this.num + '.png';
+    //     }
+    // } else {
+    //     return 'static/img/logo-bw.png';
+    // }
 };
 
 //CardSet constructor (creates array of all cards for game board)
@@ -135,7 +140,7 @@ app.controller('MainController', function($scope, $timeout) {
                 $timeout(function() {
                     $scope.firstCard.open = false;
                     $scope.secondCard.open = false;
-                }, 500);
+                }, 1000);
             }
         }
         $scope.win = $scope.checkWin();

@@ -29,7 +29,18 @@
                 <table class="table table-responsive">
                     <tr class="tablerow" ng-repeat="row in grid track by $index">
                         <td class="cell" ng-repeat="card in row track by $index">
-                            <img class="card" ng-click="flipCard($parent.$index, $index);" ng-src="{{card.getImageUrl()}}" alt="" />
+                            <div class="flip-container" ng-class="{'flip': card.open}">
+                            	<div class="flipper">
+                            		<div class="front">
+                                        <!-- front content (actually back of card) -->
+                                        <img class="card" ng-click="flipCard($parent.$index, $index);" src="static/img/logo-bw.png" alt="" />
+                            		</div>
+                            		<div class="back">
+                                        <!-- back content (actually front of card) -->
+                                        <img class="card" ng-click="flipCard($parent.$index, $index);" ng-src="{{card.getImageUrl()}}" alt="" />
+                            		</div>
+                            	</div>
+                            </div>
                         </td>
                     </tr>
                 </table>
